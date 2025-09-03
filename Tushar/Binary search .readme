@@ -1,1 +1,37 @@
+#include <stdio.h>
 
+int binarysearch(int arr[], int size, int element) {
+    int low = 0, high = size - 1, mid;
+
+    while (low <= high) {
+        mid = (low + high) / 2;
+
+        if (arr[mid] == element) {
+            return mid;
+        } 
+        else if (arr[mid] < element) {
+            low = mid + 1;
+        } 
+        else {
+            high = mid - 1;
+        }
+    }
+   //element not found 
+    return -1; 
+}
+
+int main()
+{
+    int arr[] = {1, 4, 5, 16, 25, 27, 34, 44, 56, 76, 88};
+    int element = 88;
+    int size = sizeof(arr) / sizeof(int);
+
+    int searchIndex = binarysearch(arr, size, element);
+
+    if (searchIndex != -1)
+        printf("The element %d was found at index %d\n", element, searchIndex);
+    else
+        printf("The element %d was not found\n", element);
+
+    return 0;
+}
